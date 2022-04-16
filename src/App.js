@@ -1,6 +1,6 @@
 import React , {useState} from "react";
 import axios from "axios";
-
+import ActualDate  from "./ActualDate"; 
 import "./App.css";
 
 function App(props) {
@@ -8,6 +8,7 @@ function App(props) {
   
 
   function apiResponse (response){
+    
     
     setTemperature({
       ready: true ,
@@ -17,6 +18,7 @@ function App(props) {
       humidity: response.data.main.humidity,
       description: response.data.weather[0].description,
       icon: `https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png`,
+      date: new Date (response.data.dt * 1000),
     });
     
  }
@@ -53,7 +55,7 @@ function App(props) {
                 <h1 id="city">Lagos</h1>
                 <ul>
                   <li>
-                    <span id="date">wednesday</span>
+                    <span id="date"> <ActualDate date= {temperature.date} /> </span>
                   </li>
                   <li className="text-capitlize">{temperature.description}</li>
                 </ul>
