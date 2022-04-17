@@ -5,7 +5,7 @@ import "./App.css";
 
 function App(props) {
   const [temperature, setTemperature] = useState({ ready:false});
-  
+  const[state, setState] =useState (props.defaultCity)
 
   function apiResponse (response){
     
@@ -23,14 +23,31 @@ function App(props) {
     
  }
 
+ function search() {
+const key = "9941e27eb40543810ee2a95e3ea433af";
+
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${state} &appid=${key}&units=metric`;
+axios.get(apiUrl).then(apiResponse);
+ }
+
+ function submit(event){
+   event.preventDefault();
+    search();
+ }
+
+  function change(event){
+setState(event.target.value);
+  }
+
   if (temperature.ready) {
-    
+
+
     return (
       <div className="App">
         <div className="container">
           <div className="weather-app-wrapper">
             <div className="weather-app">
-              <form id="search-form" className="mb-3">
+              <form id="search-form" className="mb-3" onSubmit={submit}>
                 <div className="row">
                   <div className="col-9">
                     <input
@@ -40,6 +57,7 @@ function App(props) {
                       id="city-input"
                       autoComplete="off"
                       autoFocus="on"
+                      onChange={change}
                     />
                   </div>
                   <div className="col-3">
@@ -52,32 +70,34 @@ function App(props) {
                 </div>
               </form>
               <div className="overview">
-                <h1 id="city">Lagos</h1>
+                <h1 id="city"> {temperature.city} </h1>
                 <ul>
                   <li>
-                    <span id="date"> <ActualDate date= {temperature.date} /> </span>
+                    <span id="date">
+                      {" "}
+                      <ActualDate date={temperature.date} />{" "}
+                    </span>
                   </li>
                   <li className="text-capitlize">{temperature.description}</li>
                 </ul>
               </div>
               <div className="row">
                 <div className="col-8 weather-temperature">
-                
-                    <img
-                      src={temperature.icon}
-                      alt="Clear"
-                      id="icon"
-                      className="float-left"
-                    />
-                    
-                      <strong id="temperature"> { temperature.temperature} </strong>
-                      <span className="units"> °C</span>
-                   
-                  </div>
+                  <img
+                    src={temperature.icon}
+                    alt="Clear"
+                    id="icon"
+                    className="float-left"
+                  />
+
+                  <strong id="temperature"> {temperature.temperature} </strong>
+                  <span className="units"> °C</span>
+                </div>
                 <div className="col-4">
                   <ul>
                     <li>
-                      Humidity: <span id="humidity">{temperature.humidity}</span>%
+                      Humidity:{" "}
+                      <span id="humidity">{temperature.humidity}</span>%
                     </li>
                     <li>
                       Wind: <span id="wind">{temperature.wind}</span> m/h
@@ -85,30 +105,26 @@ function App(props) {
                   </ul>
                 </div>
               </div>
-                </div>
-  
-              <div className="weather-forecast" id="forecast"></div>
-              <small>
-                <a
-                  href="https://github.com/Teea-dev"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Open-source code
-                </a>
-                <span className="author"> by Ogunnoiki Adetokunbo</span>
-              </small>
             </div>
-            </div>
-            </div>
-            );
+
+            <div className="weather-forecast" id="forecast"></div>
+            <small>
+              <a
+                href="https://github.com/Teea-dev"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Open-source code
+              </a>
+              <span className="author"> by Ogunnoiki Adetokunbo</span>
+            </small>
+          </div>
+        </div>
+      </div>
+    );
   } else {
-    
-  const key = "9941e27eb40543810ee2a95e3ea433af";
-  
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity} &appid=${key}&units=metric`;
-  axios.get(apiUrl).then(apiResponse)
-  return "Efile e je ko load "
+    search();
+  return "Efile e je ko load ";
   }
  
 }
