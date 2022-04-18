@@ -2,6 +2,7 @@ import React , {useState} from "react";
 import axios from "axios";
 import ActualDate  from "./ActualDate"; 
 import "./App.css";
+import WeatherCon from "./WeatherCon";
 
 function App(props) {
   const [temperature, setTemperature] = useState({ ready:false});
@@ -17,7 +18,7 @@ function App(props) {
       city: response.data.name,
       humidity: response.data.main.humidity,
       description: response.data.weather[0].description,
-      icon: `https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png`,
+      icon: response.data.weather[0].icon,
       date: new Date (response.data.dt * 1000),
     });
     
@@ -36,6 +37,7 @@ axios.get(apiUrl).then(apiResponse);
  }
 
   function change(event){
+    
 setState(event.target.value);
   }
 
@@ -83,12 +85,7 @@ setState(event.target.value);
               </div>
               <div className="row">
                 <div className="col-8 weather-temperature">
-                  <img
-                    src={temperature.icon}
-                    alt="Clear"
-                    id="icon"
-                    className="float-left"
-                  />
+                  <WeatherCon code = {temperature.icon}/>
 
                   <strong id="temperature"> {temperature.temperature} </strong>
                   <span className="units"> °C</span>
