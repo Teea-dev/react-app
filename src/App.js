@@ -2,7 +2,8 @@ import React , {useState} from "react";
 import axios from "axios";
 import ActualDate  from "./ActualDate"; 
 import "./App.css";
-import WeatherCon from "./WeatherCon";
+import WeatherIcon from "./WeatherIcon";
+import WeatherUnits from "./WeatherUnits";
 
 function App(props) {
   const [temperature, setTemperature] = useState({ ready:false});
@@ -85,10 +86,10 @@ setState(event.target.value);
               </div>
               <div className="row">
                 <div className="col-8 weather-temperature">
-                  <WeatherCon code = {temperature.icon}/>
+                  <WeatherIcon code = {temperature.icon}/>
+                  <WeatherUnits metric = {temperature.temperature} />
 
-                  <strong id="temperature"> {temperature.temperature} </strong>
-                  <span className="units"> °C</span>
+
                 </div>
                 <div className="col-4">
                   <ul>
