@@ -1,7 +1,8 @@
 import axios from "axios";
-import React ,{useState} from "react";
+import React ,{useState ,useEffect} from "react";
 import ForecastDay from "./ForecastDay";
-import WeatherIcon from "./WeatherIcon";
+
+import "./WeatherForecast.css";
 
 
 
@@ -11,22 +12,35 @@ const WeatherForecast = (props) => {
  const[load,setLoad] = useState(false);
  const[forecast,setForecast] = useState(null);
 
-    const forecastResponse = (response)=>{
-        setForecast(response.data.daily)
-           setLoad(true) ;
+ useEffect(()=>{
+   setLoad(false)
+ },[props.coordinate]);
+
+    function forecastResponse(response) {
+        setForecast(response.data.daily);
+        setLoad(true);
     }
     if (load) {
         return ( 
             <div className="WeatherForecast">
                 <div className="row">
-                 <div className="col">
-          <ForecastDay day = {forecast[0]} />
-                 </div>
-                </div>
-            </div>
-         );
-        
-    } else {
+                    {forecast.map(function(dailForecast,index){
+if (index <6 ) {
+    return(
+
+        <div className="col" key={index}>
+    <ForecastDay day = {dailForecast} />
+        </div>
+        );
+        }else{
+            return null;
+        }
+           })}
+       </div>
+    </div>
+ )
+
+    ;} else {
         
                 let lat = props.coordinate.lat;
                 let lon = props.coordinate.lon;
