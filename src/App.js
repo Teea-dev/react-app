@@ -4,6 +4,7 @@ import ActualDate  from "./ActualDate";
 import "./App.css";
 import WeatherIcon from "./WeatherIcon";
 import WeatherUnits from "./WeatherUnits";
+import WeatherForecast from "./WeatherForecast";
 
 function App(props) {
   const [temperature, setTemperature] = useState({ ready:false});
@@ -14,6 +15,7 @@ function App(props) {
     
     setTemperature({
       ready: true ,
+      coordinate: response.data.coord,
       temperature: Math.round(response.data.main.temp),
       wind: response.data.wind.speed,
       city: response.data.name,
@@ -103,8 +105,10 @@ setState(event.target.value);
                   </ul>
                 </div>
               </div>
+           <div>
+             <WeatherForecast coordinate = {temperature.coordinate} />
+           </div>
             </div>
-
             <div className="weather-forecast" id="forecast"></div>
             <small>
               <a
