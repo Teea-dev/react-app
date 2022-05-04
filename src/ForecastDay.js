@@ -6,12 +6,12 @@ const ForecastDay =(props) =>{
 
  function minTemp() {
    let temperature = Math.round(props.day.temp.min);
-   return `${temperature}c`;
+   return `${temperature}°`;
  }
 
  function maxTemp() {
      let temperature = Math.round(props.day.temp.max);
-     return `${temperature}c`
+     return `${temperature}°`
  }
  function day (){
      let date = new Date( props.day.dt * 1000);

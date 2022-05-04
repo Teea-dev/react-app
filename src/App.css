@@ -101,3 +101,7 @@ li:first-letter {
 .author {
   color: #272142;
 }
+.loader{
+  text-align: center;
+  margin: 30px 120px;
+}

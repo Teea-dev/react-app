@@ -126,7 +126,13 @@ setState(event.target.value);
     );
   } else {
     search();
-  return "Efile e je ko load ";
+  return(
+    <div className="loader">
+          <h2>
+            Efile e je ko load 
+          </h2>
+    </div>
+  );
   }
  
 }
