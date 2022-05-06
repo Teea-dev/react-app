@@ -88,10 +88,8 @@ setState(event.target.value);
               </div>
               <div className="row">
                 <div className="col-8 weather-temperature">
-                  <WeatherIcon code = {temperature.icon}/>
-                  <WeatherUnits metric = {temperature.temperature} />
-
-
+                  <WeatherIcon code={temperature.icon} />
+                  <WeatherUnits metric={temperature.temperature} />
                 </div>
                 <div className="col-4">
                   <ul>
@@ -105,14 +103,14 @@ setState(event.target.value);
                   </ul>
                 </div>
               </div>
-           <div>
-             <WeatherForecast coordinate = {temperature.coordinate} />
-           </div>
+              <div>
+                <WeatherForecast coordinate={temperature.coordinate} />
+              </div>
             </div>
             <div className="weather-forecast" id="forecast"></div>
             <small>
               <a
-                href="https://github.com/Teea-dev"
+                href="https://github.com/Teea-dev/react-app"
                 target="_blank"
                 rel="noreferrer"
               >
