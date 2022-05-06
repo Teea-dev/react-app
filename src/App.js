@@ -11,7 +11,7 @@ function App(props) {
   const[state, setState] =useState (props.defaultCity)
 
   function apiResponse (response){
-    
+    console.log(response.data);
     
     setTemperature({
       ready: true ,
