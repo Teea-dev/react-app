@@ -11,12 +11,13 @@ const WeatherForecast = (props) => {
      
  const[load,setLoad] = useState(false);
  const[forecast,setForecast] = useState(null);
-
+  
  useEffect(()=>{
    setLoad(false)
  },[props.coordinate]);
 
     function forecastResponse(response) {
+        
         setForecast(response.data.daily);
         setLoad(true);
     }

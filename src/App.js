@@ -4,14 +4,16 @@ import ActualDate  from "./ActualDate";
 import "./App.css";
 import WeatherIcon from "./WeatherIcon";
 import WeatherUnits from "./WeatherUnits";
+import Time from "./Time"
 import WeatherForecast from "./WeatherForecast";
+import Moment from 'react-moment';
 
 function App(props) {
   const [temperature, setTemperature] = useState({ ready:false});
   const[state, setState] =useState (props.defaultCity)
 
   function apiResponse (response){
-    console.log(response.data);
+    
     
     setTemperature({
       ready: true ,
@@ -81,6 +83,7 @@ setState(event.target.value);
                     <span id="date">
                       {" "}
                       <ActualDate date={temperature.date} />{" "}
+                      <Time/>
                     </span>
                   </li>
                   <li className="text-capitlize">{temperature.description}</li>
