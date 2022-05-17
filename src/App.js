@@ -1,6 +1,6 @@
 import React , {useState} from "react";
 import axios from "axios";
-import ActualDate  from "./ActualDate"; 
+
 import "./App.css";
 import WeatherIcon from "./WeatherIcon";
 import WeatherUnits from "./WeatherUnits";
@@ -82,7 +82,7 @@ setState(event.target.value);
                   <li>
                     <span id="date">
                       {" "}
-                      <ActualDate date={temperature.date} />{" "}
+                      {/* <ActualDate date={temperature.date} />{" "} */}
                       <Time/>
                     </span>
                   </li>
